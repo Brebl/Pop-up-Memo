@@ -44,9 +44,9 @@ void MainWindow::writeFile()
         QDir().mkdir("log");
     }
     QDate date = QDate::currentDate();
-    QString filename = "log/" + date.toString("dd.MM.yy-ddd") + ".txt";
+    QString filename = "log/lokitiedosto.txt";
     QTime time = QTime::currentTime();
-    QString timestamp = time.toString("hh:mm") + " ";
+    QString timestamp = date.toString("dd.MM.yy-ddd") + " " + time.toString("hh:mm") + " ";
     QFile file(filename);
     if (!file.open(QIODevice::WriteOnly | QIODevice::Text | QIODevice::Append))
         return;
