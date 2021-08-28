@@ -11,6 +11,7 @@ MainWindow::MainWindow(QWidget *parent) :
     timer->start(100);
     showTime();
     connect(ui->pushButton,&QPushButton::pressed, this, &MainWindow::writeFile);
+    ui->textEdit->installEventFilter(this);
 }
 
 MainWindow::~MainWindow()
@@ -57,3 +58,34 @@ void MainWindow::writeFile()
     this->showMinimized();
 }
 
+bool MainWindow::eventFilter(QObject* obj, QEvent* event)
+{
+    if (obj == ui->textEdit && event->type() == QEvent::KeyPress) {
+        QKeyEvent *keyEvent = static_cast<QKeyEvent *>(event);
+        if(keyEvent->key() == Qt::Key_Enter || keyEvent->key() == Qt::Key_Return) {
+            writeFile();
+            return true;
+        }
+    }
+    return false;
+}
+
+void MainWindow::on_actionClose_triggered()
+{
+    close();
+}
+
+void MainWindow::on_actionClose_hovered()
+{
+//    QToolTip::showText(ui->menuFile->mapToGlobal(QPoint(0,0)),ui->actionClose->toolTip());
+}
+
+void MainWindow::on_actionSettings_triggered()
+{
+    settings set(this, popupTimeHour, popupTimeMinute);
+    set.setModal(true);
+    if ( set.exec() == QDialog::Accepted ) {
+        popupTimeHour = set.getHour();
+        popupTimeMinute = set.getMinute();
+    }
+}
