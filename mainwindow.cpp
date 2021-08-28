@@ -7,9 +7,9 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     QTimer *timer = new QTimer(this);
-    connect(timer, &QTimer::timeout, this, &MainWindow::showTime);
+    connect(timer, &QTimer::timeout, this, &MainWindow::updateTime);
     timer->start(100);
-    showTime();
+    updateTime();
     connect(ui->pushButton,&QPushButton::pressed, this, &MainWindow::writeFile);
     ui->textEdit->installEventFilter(this);
 }
@@ -27,14 +27,14 @@ void MainWindow::changeState()
     }
 }
 
-void MainWindow::showTime()
+void MainWindow::updateTime()
 {
     QTime time = QTime::currentTime();
     QString text = time.toString("hh:mm");
     if ((time.second() % 2) == 0)
         text[2] = ' ';
     ui->lcdNumber->display(text);
-    if(time.minute() == 0 && time.second() == 0){
+    if(time.minute() == popupTimeMinute && time.second() == 0){
         changeState();
     }
 }

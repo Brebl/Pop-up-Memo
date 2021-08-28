@@ -27,7 +27,7 @@ public:
     ~MainWindow();
 
     void changeState();
-    void showTime();
+    void updateTime();
     void writeFile();
     bool eventFilter(QObject*, QEvent*);
 
