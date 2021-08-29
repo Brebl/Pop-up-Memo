@@ -35,6 +35,8 @@ public:
 private:
     int popupTimeHour = 0;
     int popupTimeMinute = 0;
+    Settings::_interval interval = Settings::_interval::_1h;
+    QTime startTime;
 
 private slots:
     void on_actionClose_triggered();

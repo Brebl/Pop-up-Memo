@@ -3,25 +3,40 @@
 
 #include <QDialog>
 #include <QDebug>
+#include <QTime>
 
 namespace Ui {
-class settings;
+class Settings;
 }
 
-class settings : public QDialog
+class Settings : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit settings(QWidget *parent = nullptr, int = 0, int = 0);
-    ~settings();
+    enum class _interval {
+        _custom,
+        _2h,
+        _1h,
+        _30m,
+        _20m,
+        _15m,
+        _10m,
+        _5m,
+        _1m,
+    };
+
+    explicit Settings(QWidget *parent = nullptr, int = 0, int = 0, _interval=_interval::_1h);
+    ~Settings();
 
     int getHour();
     int getMinute();
+    _interval getInterval();
+    QTime getTime();
+
 
 private:
-    Ui::settings *ui;
-    QDialog parent_;
+    Ui::Settings *ui;
 };
 
 #endif // SETTINGS_H

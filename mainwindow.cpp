@@ -82,10 +82,12 @@ void MainWindow::on_actionClose_hovered()
 
 void MainWindow::on_actionSettings_triggered()
 {
-    settings set(this, popupTimeHour, popupTimeMinute);
+    Settings set(this, popupTimeHour, popupTimeMinute, interval);
     set.setModal(true);
     if ( set.exec() == QDialog::Accepted ) {
         popupTimeHour = set.getHour();
         popupTimeMinute = set.getMinute();
+        interval = set.getInterval();
+        startTime = set.getTime();
     }
 }
