@@ -6,10 +6,10 @@
 #include <QTime>
 
 namespace Ui {
-class Settings;
+class SettingsWindow;
 }
 
-class Settings : public QDialog
+class SettingsWindow : public QDialog
 {
     Q_OBJECT
 
@@ -26,8 +26,8 @@ public:
         _1m,
     };
 
-    explicit Settings(QWidget *parent = nullptr, int = 0, int = 0, _interval=_interval::_1h);
-    ~Settings();
+    explicit SettingsWindow(QWidget *parent = nullptr, int = 0, int = 0, _interval=_interval::_1h);
+    ~SettingsWindow();
 
     int getHour();
     int getMinute();
@@ -36,7 +36,7 @@ public:
 
 
 private:
-    Ui::Settings *ui;
+    Ui::SettingsWindow *ui;
 };
 
 #endif // SETTINGS_H

@@ -82,12 +82,12 @@ void MainWindow::on_actionClose_hovered()
 
 void MainWindow::on_actionSettings_triggered()
 {
-    Settings set(this, intervalTimeHour, intervalTimeMinute, intervalType);
-    set.setModal(true);
-    if ( set.exec() == QDialog::Accepted ) {
-        intervalTimeHour = set.getHour();
-        intervalTimeMinute = set.getMinute();
-        intervalType = set.getInterval();
-        startTime = set.getTime();
+    SettingsWindow settings(this, intervalTimeHour, intervalTimeMinute, intervalType);
+    settings.setModal(true);
+    if ( settings.exec() == QDialog::Accepted ) {
+        intervalTimeHour = settings.getHour();
+        intervalTimeMinute = settings.getMinute();
+        intervalType = settings.getInterval();
+        startTime = settings.getTime();
     }
 }

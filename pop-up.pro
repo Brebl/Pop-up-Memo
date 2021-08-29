@@ -27,15 +27,15 @@ CONFIG += c++17 no-pie
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-    settings.cpp \
+    settingswindow.cpp
 
 HEADERS += \
         mainwindow.h \
-    settings.h \
+    settingswindow.h
 
 FORMS += \
         mainwindow.ui \
-    settings.ui \
+    settingswindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

@@ -12,7 +12,7 @@
 #include <QTextEdit>
 #include <QToolTip>
 #include <QPoint>
-#include "settings.h"
+#include "settingswindow.h"
 
 namespace Ui {
 class MainWindow;
@@ -33,7 +33,7 @@ public:
 
     Ui::MainWindow *ui;
 private:
-    Settings::_interval intervalType = Settings::_interval::_1h;
+    SettingsWindow::_interval intervalType = SettingsWindow::_interval::_1h;
     QTime startTime;
     int intervalTimeHour = 0;
     int intervalTimeMinute = 0;

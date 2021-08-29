@@ -1,9 +1,9 @@
-#include "settings.h"
+#include "settingswindow.h"
 #include "ui_settings.h"
 
-Settings::Settings(QWidget *parent, const int hour, const int minute, const Settings::_interval inter) :
+SettingsWindow::SettingsWindow(QWidget *parent, const int hour, const int minute, const SettingsWindow::_interval inter) :
     QDialog(parent),
-    ui(new Ui::Settings)
+    ui(new Ui::SettingsWindow)
 {
     ui->setupUi(this);
     ui->hourSelect->setValue(hour);
@@ -39,22 +39,22 @@ Settings::Settings(QWidget *parent, const int hour, const int minute, const Sett
     }
 }
 
-Settings::~Settings()
+SettingsWindow::~SettingsWindow()
 {
     delete ui;
 }
 
-int Settings::getHour()
+int SettingsWindow::getHour()
 {
     return ui->hourSelect->value();
 }
 
-int Settings::getMinute()
+int SettingsWindow::getMinute()
 {
     return ui->minuteSelect->value();
 }
 
-Settings::_interval Settings::getInterval()
+SettingsWindow::_interval SettingsWindow::getInterval()
 {
     if (ui->radioButton_custom->isChecked())
         return _interval::_custom;
@@ -79,7 +79,7 @@ Settings::_interval Settings::getInterval()
     }
 }
 
-QTime Settings::getTime()
+QTime SettingsWindow::getTime()
 {
     return ui->timeEdit->time();
 }
