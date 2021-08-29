@@ -1,14 +1,15 @@
 #include "settingswindow.h"
-#include "ui_settings.h"
+#include "ui_settingswindow.h"
 
-SettingsWindow::SettingsWindow(Settings& settings, QWidget *parent) :
+SettingsWindow::SettingsWindow(const Settings& mainwin_settings, QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::SettingsWindow)
+    ui(new Ui::SettingsWindow),
+    sw_settings(mainwin_settings)
 {
     ui->setupUi(this);
-    ui->hourSelect->setValue(settings.intervalTimeHour);
-    ui->minuteSelect->setValue(settings.intervalTimeMinute);
-    switch (settings.intervalType) {
+    ui->hourSelect->setValue(sw_settings.intervalTimeHour);
+    ui->minuteSelect->setValue(sw_settings.intervalTimeMinute);
+    switch (sw_settings.intervalType) {
     case Settings::_interval::_custom:
         ui->radioButton_custom->setChecked(true);
         break;
@@ -37,6 +38,7 @@ SettingsWindow::SettingsWindow(Settings& settings, QWidget *parent) :
         ui->radioButton_1m->setChecked(true);
         break;
     }
+    connect(ui->hourSelect, SIGNAL(valueChanged(int)), this, SLOT(onIntervalTimeHourChanged()));
 }
 
 SettingsWindow::~SettingsWindow()
@@ -44,42 +46,27 @@ SettingsWindow::~SettingsWindow()
     delete ui;
 }
 
-int SettingsWindow::getHour()
+void SettingsWindow::onIntervalTimeHourChanged()
 {
-    return ui->hourSelect->value();
+    sw_settings.intervalTimeHour = ui->hourSelect->value();
 }
 
-int SettingsWindow::getMinute()
+void SettingsWindow::onIntervalTimeMinuteChanged()
 {
-    return ui->minuteSelect->value();
+    sw_settings.intervalTimeMinute = ui->minuteSelect->value();
 }
 
-Settings::_interval SettingsWindow::getInterval()
+void SettingsWindow::onIntervaltypeChanged()
 {
-    if (ui->radioButton_custom->isChecked())
-        return Settings::_interval::_custom;
-    if( ui->radioButton_2h->isChecked())
-        return Settings::_interval::_2h;
-    if (ui->radioButton_1h->isChecked())
-        return Settings::_interval::_1h;
-    if(ui->radioButton_30m->isChecked())
-        return Settings::_interval::_30m;
-    if(ui->radioButton_20m->isChecked())
-        return Settings::_interval::_20m;
-    if(ui->radioButton_15m->isChecked())
-        return Settings::_interval::_15m;
-    if(ui->radioButton_10m->isChecked())
-        return Settings::_interval::_10m;
-    if(ui->radioButton_5m->isChecked())
-        return Settings::_interval::_5m;
-    if(ui->radioButton_1m->isChecked())
-        return Settings::_interval::_1m;
-    else {
-        return Settings::_interval::_1m;
-    }
+//    sw_settings.intervalType = ui->
 }
 
-QTime SettingsWindow::getTime()
+void SettingsWindow::onStartTimeChanged()
 {
-    return ui->timeEdit->time();
+    sw_settings.startTime = ui->timeEdit->time();
+}
+
+Settings SettingsWindow::getSettings()
+{
+    return sw_settings;
 }

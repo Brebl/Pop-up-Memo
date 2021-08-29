@@ -45,7 +45,7 @@
     <attribute name="title">
      <string>Tab 1</string>
     </attribute>
-    <widget class="QWidget" name="">
+    <widget class="QWidget" name="layoutWidget">
      <property name="geometry">
       <rect>
        <x>160</x>
@@ -159,7 +159,7 @@
       </item>
      </layout>
     </widget>
-    <widget class="QWidget" name="">
+    <widget class="QWidget" name="layoutWidget">
      <property name="geometry">
       <rect>
        <x>160</x>
@@ -215,8 +215,8 @@
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>248</x>
-     <y>254</y>
+     <x>250</x>
+     <y>435</y>
     </hint>
     <hint type="destinationlabel">
      <x>157</x>

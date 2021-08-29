@@ -85,9 +85,6 @@ void MainWindow::on_actionSettings_triggered()
     SettingsWindow sw(settings, this);
     sw.setModal(true);
     if ( sw.exec() == QDialog::Accepted ) {
-        settings.intervalTimeHour = sw.getHour();
-        settings.intervalTimeMinute = sw.getMinute();
-        settings.intervalType = sw.getInterval();
-        settings.startTime = sw.getTime();
+        settings = sw.getSettings();
     }
 }

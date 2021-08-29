@@ -5,6 +5,7 @@
 #include <QDebug>
 #include <QTime>
 #include "settings.h"
+#include <QSpinBox>
 
 namespace Ui {
 class SettingsWindow;
@@ -17,17 +18,24 @@ class SettingsWindow : public QDialog
 public:
 
 
-    explicit SettingsWindow(Settings&, QWidget *parent = nullptr);
+    explicit SettingsWindow(const Settings&, QWidget *parent = nullptr);
     ~SettingsWindow();
 
-    int getHour();
-    int getMinute();
-    Settings::_interval getInterval();
-    QTime getTime();
+//    int getHour();
+//    int getMinute();
+//    Settings::_interval getInterval();
+//    QTime getTime();
+    Settings getSettings();
 
+private slots:
+    void onIntervalTimeHourChanged();
+    void onIntervalTimeMinuteChanged();
+    void onIntervaltypeChanged();
+    void onStartTimeChanged();
 
 private:
     Ui::SettingsWindow *ui;
+    Settings sw_settings;
 };
 
 #endif // SETTINGS_H
