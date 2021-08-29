@@ -31,7 +31,7 @@ public:
 private slots:
     void onIntervalTimeHourChanged(int);
     void onIntervalTimeMinuteChanged(int);
-    void onIntervaltypeChanged();
+    void onIntervaltypeChanged(int);
     void onStartTimeChanged(QTime t);
 
 private:

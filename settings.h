@@ -24,7 +24,6 @@ public:
     QTime startTime{8,0,0};
     int intervalTimeHour = 0;
     int intervalTimeMinute = 0;
-    QButtonGroup bg(QObject *parent = nullptr);
 };
 
 #endif // SETTINGS_H
