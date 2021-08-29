@@ -27,11 +27,13 @@ CONFIG += c++17 no-pie
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-    settingswindow.cpp
+    settingswindow.cpp \
+    settings.cpp
 
 HEADERS += \
         mainwindow.h \
-    settingswindow.h
+    settingswindow.h \
+    settings.h
 
 FORMS += \
         mainwindow.ui \

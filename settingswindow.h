@@ -1,9 +1,10 @@
-#ifndef SETTINGS_H
-#define SETTINGS_H
+#ifndef SETTINGSWINDOW_H
+#define SETTINGSWINDOW_H
 
 #include <QDialog>
 #include <QDebug>
 #include <QTime>
+#include "settings.h"
 
 namespace Ui {
 class SettingsWindow;
@@ -14,24 +15,14 @@ class SettingsWindow : public QDialog
     Q_OBJECT
 
 public:
-    enum class _interval {
-        _custom,
-        _2h,
-        _1h,
-        _30m,
-        _20m,
-        _15m,
-        _10m,
-        _5m,
-        _1m,
-    };
 
-    explicit SettingsWindow(QWidget *parent = nullptr, int = 0, int = 0, _interval=_interval::_1h);
+
+    explicit SettingsWindow(Settings&, QWidget *parent = nullptr);
     ~SettingsWindow();
 
     int getHour();
     int getMinute();
-    _interval getInterval();
+    Settings::_interval getInterval();
     QTime getTime();
 
 
