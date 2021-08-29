@@ -17,15 +17,9 @@ class SettingsWindow : public QDialog
     Q_OBJECT
 
 public:
-
-
     explicit SettingsWindow(const Settings&, QWidget *parent = nullptr);
     ~SettingsWindow();
 
-//    int getHour();
-//    int getMinute();
-//    Settings::_interval getInterval();
-//    QTime getTime();
     Settings getSettings();
 
 private slots:

@@ -1,8 +1,6 @@
 #ifndef SETTINGS_H
 #define SETTINGS_H
 #include <QTime>
-#include <QButtonGroup>
-#include <QRadioButton>
 
 class Settings
 {
