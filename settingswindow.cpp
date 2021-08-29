@@ -38,7 +38,12 @@ SettingsWindow::SettingsWindow(const Settings& mainwin_settings, QWidget *parent
         ui->radioButton_1m->setChecked(true);
         break;
     }
-    connect(ui->hourSelect, SIGNAL(valueChanged(int)), this, SLOT(onIntervalTimeHourChanged()));
+    ui->timeEdit->setTime(sw_settings.startTime);
+    connect(ui->hourSelect, SIGNAL(valueChanged(int)), this, SLOT(onIntervalTimeHourChanged(int)));
+    connect(ui->minuteSelect, SIGNAL(valueChanged(int)), this, SLOT(onIntervalTimeMinuteChanged(int)));
+    connect(ui->timeEdit, SIGNAL(timeChanged(QTime)), this, SLOT(onStartTimeChanged(QTime)));
+    connect(ui->intervalBox, SIGNAL(buttonClicked()),this,SLOT(onIntervaltypeChanged()));
+
 }
 
 SettingsWindow::~SettingsWindow()
@@ -46,24 +51,25 @@ SettingsWindow::~SettingsWindow()
     delete ui;
 }
 
-void SettingsWindow::onIntervalTimeHourChanged()
+void SettingsWindow::onIntervalTimeHourChanged(int t)
 {
-    sw_settings.intervalTimeHour = ui->hourSelect->value();
+    sw_settings.intervalTimeHour = t;
 }
 
-void SettingsWindow::onIntervalTimeMinuteChanged()
+void SettingsWindow::onIntervalTimeMinuteChanged(int t)
 {
-    sw_settings.intervalTimeMinute = ui->minuteSelect->value();
+    sw_settings.intervalTimeMinute = t;
 }
 
 void SettingsWindow::onIntervaltypeChanged()
 {
+    qDebug() << "radio changed";
 //    sw_settings.intervalType = ui->
 }
 
-void SettingsWindow::onStartTimeChanged()
+void SettingsWindow::onStartTimeChanged(QTime t)
 {
-    sw_settings.startTime = ui->timeEdit->time();
+    sw_settings.startTime = t;
 }
 
 Settings SettingsWindow::getSettings()

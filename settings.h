@@ -1,6 +1,8 @@
 #ifndef SETTINGS_H
 #define SETTINGS_H
 #include <QTime>
+#include <QButtonGroup>
+#include <QRadioButton>
 
 class Settings
 {
@@ -22,6 +24,7 @@ public:
     QTime startTime{8,0,0};
     int intervalTimeHour = 0;
     int intervalTimeMinute = 0;
+    QButtonGroup bg(QObject *parent = nullptr);
 };
 
 #endif // SETTINGS_H

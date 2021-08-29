@@ -6,6 +6,7 @@
 #include <QTime>
 #include "settings.h"
 #include <QSpinBox>
+#include <QButtonGroup>
 
 namespace Ui {
 class SettingsWindow;
@@ -28,10 +29,10 @@ public:
     Settings getSettings();
 
 private slots:
-    void onIntervalTimeHourChanged();
-    void onIntervalTimeMinuteChanged();
+    void onIntervalTimeHourChanged(int);
+    void onIntervalTimeMinuteChanged(int);
     void onIntervaltypeChanged();
-    void onStartTimeChanged();
+    void onStartTimeChanged(QTime t);
 
 private:
     Ui::SettingsWindow *ui;
