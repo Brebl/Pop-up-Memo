@@ -33,10 +33,10 @@ public:
 
     Ui::MainWindow *ui;
 private:
-    int popupTimeHour = 0;
-    int popupTimeMinute = 0;
-    Settings::_interval interval = Settings::_interval::_1h;
+    Settings::_interval intervalType = Settings::_interval::_1h;
     QTime startTime;
+    int intervalTimeHour = 0;
+    int intervalTimeMinute = 0;
 
 private slots:
     void on_actionClose_triggered();

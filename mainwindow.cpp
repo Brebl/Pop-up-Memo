@@ -34,7 +34,7 @@ void MainWindow::updateTime()
     if ((time.second() % 2) == 0)
         text[2] = ' ';
     ui->lcdNumber->display(text);
-    if(time.minute() == popupTimeMinute && time.second() == 0){
+    if(time.minute() == intervalTimeMinute && time.second() == 0){
         changeState();
     }
 }
@@ -82,12 +82,12 @@ void MainWindow::on_actionClose_hovered()
 
 void MainWindow::on_actionSettings_triggered()
 {
-    Settings set(this, popupTimeHour, popupTimeMinute, interval);
+    Settings set(this, intervalTimeHour, intervalTimeMinute, intervalType);
     set.setModal(true);
     if ( set.exec() == QDialog::Accepted ) {
-        popupTimeHour = set.getHour();
-        popupTimeMinute = set.getMinute();
-        interval = set.getInterval();
+        intervalTimeHour = set.getHour();
+        intervalTimeMinute = set.getMinute();
+        intervalType = set.getInterval();
         startTime = set.getTime();
     }
 }
