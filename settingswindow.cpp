@@ -39,10 +39,6 @@ SettingsWindow::SettingsWindow(const Settings& mainwin_settings, QWidget *parent
         break;
     }
     ui->timeEdit->setTime(sw_settings.startTime);
-    connect(ui->hourSelect, SIGNAL(valueChanged(int)), this, SLOT(onIntervalTimeHourChanged(int)));
-    connect(ui->minuteSelect, SIGNAL(valueChanged(int)), this, SLOT(onIntervalTimeMinuteChanged(int)));
-    connect(ui->timeEdit, SIGNAL(timeChanged(QTime)), this, SLOT(onStartTimeChanged(QTime)));
-    connect(ui->buttonGroup, SIGNAL(buttonClicked(int)),this, SLOT(onIntervaltypeChanged(int)));
 }
 
 SettingsWindow::~SettingsWindow()
@@ -50,17 +46,17 @@ SettingsWindow::~SettingsWindow()
     delete ui;
 }
 
-void SettingsWindow::onIntervalTimeHourChanged(int t)
+void SettingsWindow::on_hourSelect_valueChanged(int t)
 {
     sw_settings.intervalTimeHour = t;
 }
 
-void SettingsWindow::onIntervalTimeMinuteChanged(int t)
+void SettingsWindow::on_minuteSelect_valueChanged(int t)
 {
     sw_settings.intervalTimeMinute = t;
 }
 
-void SettingsWindow::onIntervaltypeChanged(int button)
+void SettingsWindow::on_buttonGroup_buttonClicked(int button)
 {
     if(button == -2)
         sw_settings.intervalType = Settings::_interval::_custom;
@@ -82,7 +78,7 @@ void SettingsWindow::onIntervaltypeChanged(int button)
         sw_settings.intervalType = Settings::_interval::_1m;
 }
 
-void SettingsWindow::onStartTimeChanged(QTime t)
+void SettingsWindow::on_timeEdit_timeChanged(QTime t)
 {
     sw_settings.startTime = t;
 }
