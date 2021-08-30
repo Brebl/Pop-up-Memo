@@ -36,7 +36,7 @@ void MainWindow::checkState(const QTime& time)
     bool changestate(false);
     switch (settings.intervalType) {
     case Settings::_interval::_custom:
-        if(time == settings.nextCustomTime) {
+        if(time.secsTo(settings.nextCustomTime) == 0) {
             settings.nextCustomTime = settings.nextCustomTime.addSecs(settings.intervalTimeHour*3600 + settings.intervalTimeMinute*60);
             if(settings.nextCustomTime < settings.startTime) {
                 settings.nextCustomTime = settings.startTime;

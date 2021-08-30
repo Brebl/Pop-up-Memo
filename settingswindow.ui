@@ -64,6 +64,12 @@
       </item>
       <item>
        <widget class="QTimeEdit" name="timeEdit">
+        <property name="locale">
+         <locale language="Finnish" country="Finland"/>
+        </property>
+        <property name="displayFormat">
+         <string>hh:mm</string>
+        </property>
         <property name="time">
          <time>
           <hour>8</hour>
