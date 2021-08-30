@@ -19,14 +19,6 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::changeState()
-{
-    if(this->windowState() == Qt::WindowMinimized || this->windowState() == Qt::WindowNoState) {
-        this->showNormal();
-        this->activateWindow();
-    }
-}
-
 void MainWindow::updateTime()
 {
     QTime time = QTime::currentTime();
@@ -34,8 +26,46 @@ void MainWindow::updateTime()
     if ((time.second() % 2) == 0)
         text[2] = ' ';
     ui->lcdNumber->display(text);
-    if(time.minute() == settings.intervalTimeMinute && time.second() == 0){
-        changeState();
+    if(time.second() == 0){
+        checkState(time);
+    }
+}
+
+void MainWindow::checkState(const QTime& time)
+{
+    bool changestate(false);
+    switch (settings.intervalType) {
+    case Settings::_interval::_custom:
+        break;
+    case Settings::_interval::_2h:
+        if(time.minute() == 0 && time.hour() % 2 == 0) {changestate = true;}
+        break;
+    case Settings::_interval::_1h:
+        if(time.minute() == 0) {changestate = true;}
+        break;
+    case Settings::_interval::_30m:
+        if(time.minute() == 0 || time.minute() == 30) {changestate = true;}
+        break;
+    case Settings::_interval::_20m:
+        if(time.minute() == 0 || time.minute() % 20 == 0) {changestate = true;}
+        break;
+    case Settings::_interval::_15m:
+        if(time.minute() == 0 || time.minute() % 15 == 0) {changestate = true;}
+        break;
+    case Settings::_interval::_10m:
+        if(time.minute() == 0 || time.minute() % 10 == 0) {changestate = true;}
+        break;
+    case Settings::_interval::_5m:
+        if(time.minute() == 0 || time.minute() % 5 == 0) {changestate = true;}
+        break;
+    case Settings::_interval::_1m:
+        changestate = true;
+        break;
+    }
+
+    if(changestate && (this->windowState() == Qt::WindowMinimized || this->windowState() == Qt::WindowNoState)) {
+        this->showNormal();
+        this->activateWindow();
     }
 }
 

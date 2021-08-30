@@ -27,7 +27,7 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-    void changeState();
+    void checkState(const QTime&);
     void updateTime();
     void writeFile();
     bool eventFilter(QObject*, QEvent*);
