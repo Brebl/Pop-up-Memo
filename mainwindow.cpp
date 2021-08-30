@@ -36,6 +36,13 @@ void MainWindow::checkState(const QTime& time)
     bool changestate(false);
     switch (settings.intervalType) {
     case Settings::_interval::_custom:
+        if(time == settings.nextCustomTime) {
+            settings.nextCustomTime = settings.nextCustomTime.addSecs(settings.intervalTimeHour*3600 + settings.intervalTimeMinute*60);
+            if(settings.nextCustomTime < settings.startTime) {
+                settings.nextCustomTime = settings.startTime;
+            }
+            changestate = true;
+        }
         break;
     case Settings::_interval::_2h:
         if(time.minute() == 0 && time.hour() % 2 == 0) {changestate = true;}
@@ -62,7 +69,6 @@ void MainWindow::checkState(const QTime& time)
         changestate = true;
         break;
     }
-
     if(changestate && (this->windowState() == Qt::WindowMinimized || this->windowState() == Qt::WindowNoState)) {
         this->showNormal();
         this->activateWindow();
