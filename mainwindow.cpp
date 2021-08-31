@@ -103,6 +103,10 @@ bool MainWindow::eventFilter(QObject* obj, QEvent* event)
             writeFile();
             return true;
         }
+        if(keyEvent->key() == Qt::Key_Escape) {
+            this->showMinimized();
+            return true;
+        }
     }
     return false;
 }
