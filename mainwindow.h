@@ -12,6 +12,7 @@
 #include <QTextEdit>
 #include <QToolTip>
 #include <QPoint>
+#include <QMessageBox>
 #include "settingswindow.h"
 #include "settings.h"
 

@@ -86,8 +86,12 @@ void MainWindow::writeFile()
     QTime time = QTime::currentTime();
     QString timestamp = date.toString("dd.MM.yy-ddd") + " " + time.toString("hh:mm") + " ";
     QFile file(filename);
-    if (!file.open(QIODevice::WriteOnly | QIODevice::Text | QIODevice::Append))
+    if (!file.open(QIODevice::WriteOnly | QIODevice::Text | QIODevice::Append)) {
+        QMessageBox msgBox;
+        msgBox.setText("Can't open file for write operations.");
+        msgBox.exec();
         return;
+    }
     QTextStream out(&file);
     out << timestamp << ui->textEdit->toPlainText() << "\n";
     file.close();
