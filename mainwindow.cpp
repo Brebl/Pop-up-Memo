@@ -41,7 +41,7 @@ void MainWindow::checkState(const QTime& time)
             if(settings.nextCustomTime < settings.startTime) {
                 settings.nextCustomTime = settings.startTime;
             }
-            changestate = true;
+            changestate = true; //weird bug: put this line out of if-statement and window shows normal. Now it won't, even though debug hits.
         }
         break;
     case Settings::_interval::_2h:
@@ -70,6 +70,7 @@ void MainWindow::checkState(const QTime& time)
         break;
     }
     if(changestate && (this->windowState() == Qt::WindowMinimized || this->windowState() == Qt::WindowNoState)) {
+        qDebug() << "hit";
         this->showNormal();
         this->activateWindow();
     }
