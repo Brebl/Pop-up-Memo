@@ -23,8 +23,6 @@ public:
     Settings getSettings();
 
 private slots:
-    void on_hourSelect_valueChanged(int);
-    void on_minuteSelect_valueChanged(int);
     void on_buttonGroup_buttonClicked(int);
     void on_timeEdit_timeChanged(QTime t);
 

@@ -7,8 +7,6 @@ SettingsWindow::SettingsWindow(const Settings& mainwin_settings, QWidget *parent
     sw_settings(mainwin_settings)
 {
     ui->setupUi(this);
-    ui->hourSelect->setValue(sw_settings.intervalTimeHour);
-    ui->minuteSelect->setValue(sw_settings.intervalTimeMinute);
     switch (sw_settings.intervalType) {
     case Settings::_interval::_custom:
         ui->radioButton_custom->setChecked(true);
@@ -38,24 +36,12 @@ SettingsWindow::SettingsWindow(const Settings& mainwin_settings, QWidget *parent
         ui->radioButton_1m->setChecked(true);
         break;
     }
-    ui->timeEdit->setTime(sw_settings.startTime);
+    ui->timeEdit->setTime(sw_settings.customTime);
 }
 
 SettingsWindow::~SettingsWindow()
 {
     delete ui;
-}
-
-void SettingsWindow::on_hourSelect_valueChanged(int t)
-{
-    sw_settings.intervalTimeHour = t;
-    sw_settings.nextCustomTime = sw_settings.startTime.addSecs(sw_settings.intervalTimeHour*3600 + sw_settings.intervalTimeMinute*60);
-}
-
-void SettingsWindow::on_minuteSelect_valueChanged(int t)
-{
-    sw_settings.intervalTimeMinute = t;
-    sw_settings.nextCustomTime = sw_settings.startTime.addSecs(sw_settings.intervalTimeHour*3600 + sw_settings.intervalTimeMinute*60);
 }
 
 void SettingsWindow::on_buttonGroup_buttonClicked(int button)
@@ -82,8 +68,7 @@ void SettingsWindow::on_buttonGroup_buttonClicked(int button)
 
 void SettingsWindow::on_timeEdit_timeChanged(QTime t)
 {
-    sw_settings.startTime = t;
-    sw_settings.nextCustomTime = sw_settings.startTime.addSecs(sw_settings.intervalTimeHour*3600 + sw_settings.intervalTimeMinute*60);
+    sw_settings.customTime = t;
 }
 
 Settings SettingsWindow::getSettings()
