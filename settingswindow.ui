@@ -45,42 +45,6 @@
     <attribute name="title">
      <string>Tab 1</string>
     </attribute>
-    <widget class="QWidget" name="layoutWidget">
-     <property name="geometry">
-      <rect>
-       <x>160</x>
-       <y>30</y>
-       <width>98</width>
-       <height>55</height>
-      </rect>
-     </property>
-     <layout class="QVBoxLayout" name="verticalLayout">
-      <item>
-       <widget class="QLabel" name="label_4">
-        <property name="text">
-         <string>Start time</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QTimeEdit" name="timeEdit">
-        <property name="locale">
-         <locale language="Finnish" country="Finland"/>
-        </property>
-        <property name="displayFormat">
-         <string>hh:mm</string>
-        </property>
-        <property name="time">
-         <time>
-          <hour>8</hour>
-          <minute>0</minute>
-          <second>0</second>
-         </time>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </widget>
     <widget class="QGroupBox" name="intervalBox">
      <property name="geometry">
       <rect>
@@ -192,44 +156,28 @@
       </item>
      </layout>
     </widget>
-    <widget class="QWidget" name="layoutWidget">
+    <widget class="QTimeEdit" name="timeEdit">
      <property name="geometry">
       <rect>
-       <x>160</x>
-       <y>90</y>
-       <width>195</width>
-       <height>80</height>
+       <x>150</x>
+       <y>40</y>
+       <width>96</width>
+       <height>28</height>
       </rect>
      </property>
-     <layout class="QGridLayout" name="gridLayout">
-      <item row="2" column="1">
-       <widget class="QSpinBox" name="minuteSelect"/>
-      </item>
-      <item row="1" column="0">
-       <widget class="QLabel" name="label">
-        <property name="text">
-         <string>Hour</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="1">
-       <widget class="QLabel" name="label_2">
-        <property name="text">
-         <string>Minute</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="0">
-       <widget class="QSpinBox" name="hourSelect"/>
-      </item>
-      <item row="0" column="0">
-       <widget class="QLabel" name="label_5">
-        <property name="text">
-         <string>Interval:</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
+     <property name="locale">
+      <locale language="Finnish" country="Finland"/>
+     </property>
+     <property name="displayFormat">
+      <string>hh:mm</string>
+     </property>
+     <property name="time">
+      <time>
+       <hour>8</hour>
+       <minute>0</minute>
+       <second>0</second>
+      </time>
+     </property>
     </widget>
    </widget>
    <widget class="QWidget" name="tab_2">

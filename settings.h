@@ -19,10 +19,7 @@ public:
         _1m,
     };
     _interval intervalType = _interval::_1h;
-    QTime startTime{8,0,0};
-    QTime nextCustomTime;
-    int intervalTimeHour = 0;
-    int intervalTimeMinute = 0;
+    QTime customTime{8,0,0};
 };
 
 #endif // SETTINGS_H
