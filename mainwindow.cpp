@@ -81,7 +81,7 @@ void MainWindow::writeFile()
         QDir().mkdir("log");
     }
     QDate date = QDate::currentDate();
-    QString filename = "log/lokitiedosto.txt";
+    QString filename = "log/" + settings.filename;
     QTime time = QTime::currentTime();
     QString timestamp = date.toString("dd.MM.yy-ddd") + " " + time.toString("hh:mm") + " ";
     QFile file(filename);

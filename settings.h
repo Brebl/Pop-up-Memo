@@ -1,6 +1,7 @@
 #ifndef SETTINGS_H
 #define SETTINGS_H
 #include <QTime>
+#include <QListWidget>
 
 class Settings
 {
@@ -20,9 +21,11 @@ public:
     };
     _interval intervalType = _interval::_1h;
     QTime startTime{8,0,0};
-    QTime nextCustomTime;
+    QTime nextCustomTime{0,0,0};
     int intervalTimeHour = 0;
     int intervalTimeMinute = 0;
+    QString filename = "lokitiedosto.txt";
+    QListWidget* log_profiles;
 };
 
 #endif // SETTINGS_H

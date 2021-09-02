@@ -7,6 +7,8 @@
 #include "settings.h"
 #include <QSpinBox>
 #include <QButtonGroup>
+#include <QPushButton>
+#include <QListWidgetItem>
 
 namespace Ui {
 class SettingsWindow;
@@ -27,6 +29,12 @@ private slots:
     void on_minuteSelect_valueChanged(int);
     void on_buttonGroup_buttonClicked(int);
     void on_timeEdit_timeChanged(QTime t);
+    void on_profileDelete_clicked();
+    void on_profileAdd_clicked();
+    void on_profileEdit_clicked();
+    void on_listWidget_itemClicked(QListWidgetItem *item);
+
+
 
 private:
     Ui::SettingsWindow *ui;

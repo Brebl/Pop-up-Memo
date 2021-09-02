@@ -39,6 +39,8 @@ SettingsWindow::SettingsWindow(const Settings& mainwin_settings, QWidget *parent
         break;
     }
     ui->timeEdit->setTime(sw_settings.startTime);
+    ui->listWidget->setCurrentItem(ui->listWidget->item(0));
+    ui->current_profile->setText(ui->listWidget->currentItem()->text());
 }
 
 SettingsWindow::~SettingsWindow()
@@ -89,4 +91,26 @@ void SettingsWindow::on_timeEdit_timeChanged(QTime t)
 Settings SettingsWindow::getSettings()
 {
     return sw_settings;
+}
+
+void SettingsWindow::on_profileDelete_clicked()
+{
+    ui->listWidget->takeItem(ui->listWidget->currentRow());
+}
+
+void SettingsWindow::on_profileAdd_clicked()
+{
+    ui->listWidget->addItem("new_item");
+    ui->listWidget->item(ui->listWidget->count()-1)->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEditable | Qt::ItemIsEnabled |Qt::ItemIsUserCheckable);
+}
+
+void SettingsWindow::on_profileEdit_clicked()
+{
+    ui->listWidget->editItem(ui->listWidget->currentItem());
+}
+
+void SettingsWindow::on_listWidget_itemClicked(QListWidgetItem *item)
+{
+    ui->current_profile->setText(item->text());
+    sw_settings.filename = item->text() + ".txt";
 }
