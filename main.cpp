@@ -3,6 +3,10 @@
 
 int main(int argc, char *argv[])
 {
+    QCoreApplication::setOrganizationName("Breblsoft");
+    QCoreApplication::setOrganizationDomain("gsb.fi");
+    QCoreApplication::setApplicationName("pop-up menu");
+
     QApplication a(argc, argv);
     MainWindow w;
     w.show();

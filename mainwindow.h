@@ -13,6 +13,7 @@
 #include <QToolTip>
 #include <QPoint>
 #include <QMessageBox>
+#include <QSettings>
 #include "settingswindow.h"
 #include "settings.h"
 
@@ -36,10 +37,10 @@ public:
     Ui::MainWindow *ui;
 private:
     Settings settings;
+    QSettings saved_settings;
 
 private slots:
     void on_actionClose_triggered();
-    void on_actionClose_hovered();
     void on_actionSettings_triggered();
 };
 

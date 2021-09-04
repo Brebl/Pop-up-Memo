@@ -2,5 +2,4 @@
 
 Settings::Settings()
 {
-    log_profiles = new QListWidget;
 }

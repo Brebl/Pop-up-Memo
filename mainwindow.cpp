@@ -12,10 +12,16 @@ MainWindow::MainWindow(QWidget *parent) :
     updateTime();
     connect(ui->pushButton,&QPushButton::pressed, this, &MainWindow::writeFile);
     ui->textEdit->installEventFilter(this);
+    settings.intervalType = static_cast<Settings::_interval>(saved_settings.value("intervaltype", static_cast<int>(Settings::_interval::_1h)).toInt());
+    settings.customTime = saved_settings.value("customtime", QTime(settings.customTime)).value<QTime>();
+    settings.filename = saved_settings.value("filename", QString(settings.filename)).value<QString>();
 }
 
 MainWindow::~MainWindow()
 {
+    saved_settings.setValue("customtime", settings.customTime);
+    saved_settings.setValue("filename",settings.filename);
+    saved_settings.setValue("intervaltype", static_cast<int>(settings.intervalType));
     delete ui;
 }
 
@@ -38,6 +44,12 @@ void MainWindow::checkState(const QTime& time)
     case Settings::_interval::_custom:
         if(time.secsTo(settings.customTime) == 0) {changestate = true;}
         break;
+    case Settings::_interval::_4h:
+        if(time.minute() == 0 && time.hour() % 4 == 0) {changestate = true;}
+        break;
+    case Settings::_interval::_3h:
+        if(time.minute() == 0 && time.hour() % 3 == 0) {changestate = true;}
+        break;
     case Settings::_interval::_2h:
         if(time.minute() == 0 && time.hour() % 2 == 0) {changestate = true;}
         break;
@@ -55,12 +67,6 @@ void MainWindow::checkState(const QTime& time)
         break;
     case Settings::_interval::_10m:
         if(time.minute() == 0 || time.minute() % 10 == 0) {changestate = true;}
-        break;
-    case Settings::_interval::_5m:
-        if(time.minute() == 0 || time.minute() % 5 == 0) {changestate = true;}
-        break;
-    case Settings::_interval::_1m:
-        changestate = true;
         break;
     }
     if(changestate && (this->windowState() == Qt::WindowMinimized || this->windowState() == Qt::WindowNoState)) {
@@ -111,11 +117,6 @@ bool MainWindow::eventFilter(QObject* obj, QEvent* event)
 void MainWindow::on_actionClose_triggered()
 {
     close();
-}
-
-void MainWindow::on_actionClose_hovered()
-{
-//    QToolTip::showText(ui->menuFile->mapToGlobal(QPoint(0,0)),ui->actionClose->toolTip());
 }
 
 void MainWindow::on_actionSettings_triggered()
