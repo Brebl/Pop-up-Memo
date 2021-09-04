@@ -127,3 +127,9 @@ void MainWindow::on_actionSettings_triggered()
         settings = sw.getSettings();
     }
 }
+
+void MainWindow::on_actionHelp_triggered()
+{
+    manpage mp(this);
+    mp.exec();
+}

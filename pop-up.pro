@@ -28,16 +28,19 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
     settingswindow.cpp \
-    settings.cpp
+    settings.cpp \
+    manpage.cpp
 
 HEADERS += \
         mainwindow.h \
     settingswindow.h \
-    settings.h
+    settings.h \
+    manpage.h
 
 FORMS += \
         mainwindow.ui \
-    settingswindow.ui
+    settingswindow.ui \
+    manpage.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

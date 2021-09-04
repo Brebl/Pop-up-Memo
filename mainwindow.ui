@@ -106,6 +106,7 @@
      <addaction name="actionVersion_1_1_0"/>
     </widget>
     <addaction name="menuAbout_2"/>
+    <addaction name="actionHelp"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuEdit"/>
@@ -137,6 +138,11 @@
   <action name="actionSettings">
    <property name="text">
     <string>Settings</string>
+   </property>
+  </action>
+  <action name="actionHelp">
+   <property name="text">
+    <string>Quick Manual</string>
    </property>
   </action>
  </widget>

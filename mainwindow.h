@@ -16,6 +16,7 @@
 #include <QSettings>
 #include "settingswindow.h"
 #include "settings.h"
+#include "manpage.h"
 
 namespace Ui {
 class MainWindow;
@@ -42,6 +43,7 @@ private:
 private slots:
     void on_actionClose_triggered();
     void on_actionSettings_triggered();
+    void on_actionHelp_triggered();
 };
 
 #endif // MAINWINDOW_H
