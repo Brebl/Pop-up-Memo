@@ -83,7 +83,6 @@ void MainWindow::writeFile()
     QDate date = QDate::currentDate();
     QString filename = "log/" + settings.filename;
     QTime time = QTime::currentTime();
-    QString timestamp = date.toString("dd.MM.yy-ddd") + " " + time.toString("hh:mm") + " ";
     QFile file(filename);
     if (!file.open(QIODevice::WriteOnly | QIODevice::Text | QIODevice::Append)) {
         QMessageBox msgBox;
@@ -92,7 +91,7 @@ void MainWindow::writeFile()
         return;
     }
     QTextStream out(&file);
-    out << timestamp << ui->textEdit->toPlainText() << "\n";
+    out << date.toString("dd.MM.yyyy") << "," << time.toString("hh:mm") << ",\"" << ui->textEdit->toPlainText() << "\"\n";
     file.close();
     ui->textEdit->setPlainText(QString(""));
     this->showMinimized();
