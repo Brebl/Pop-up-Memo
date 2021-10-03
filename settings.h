@@ -20,7 +20,7 @@ public:
     };
     _interval intervalType = _interval::_1h;
     QTime customTime{15,55,0};
-    QString filename = "logfile.txt";
+    QString filename = "logfile.csv";
 };
 
 #endif // SETTINGS_H
