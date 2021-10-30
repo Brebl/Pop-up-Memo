@@ -91,7 +91,7 @@ void MainWindow::writeFile()
         return;
     }
     QTextStream out(&file);
-    out << date.toString("dd.MM.yyyy") << "," << time.toString("hh:mm") << ",\"" << ui->textEdit->toPlainText() << "\"\n";
+    out << date.toString("dd.MM.yyyy") << ";" << time.toString("hh:mm") << ";\"" << ui->textEdit->toPlainText() << "\"\n";
     file.close();
     ui->textEdit->setPlainText(QString(""));
     this->showMinimized();
